@@ -1,0 +1,1 @@
+$twitter = {:user => '<your username>', :password => '<your password>'}
