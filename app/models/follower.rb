@@ -1,4 +1,6 @@
 class Follower < ActiveRecord::Base
+  named_scope :sorted, :order => ["started_following_on desc, stopped_following_on desc"]
+  
   def self.sync_with_twitter
     followers = fetch_all_followers
     existing_followers = all
@@ -20,7 +22,7 @@ class Follower < ActiveRecord::Base
   
   def self.fetch_all_followers
     twitter = Twitter::Base.new($twitter[:user], $twitter[:password])
-    followers_count = twitter.user($twitter[:user]).followers_count
+    followers_count = twitter.user($twitter[:user]).followers_count.to_i
     followers = []
     page = 1
     until followers.size >= followers_count

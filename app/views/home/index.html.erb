@@ -1,0 +1,9 @@
+<% @followers.each do |follower| %>
+  <%= next_date(follower) %>
+  <% if follower.stopped_following_on? %>
+    <span style="color:red">
+  <% else %>
+    <span style="color:green">
+  <% end %>
+  <%= follower.name %></span><br/>
+<% end %>

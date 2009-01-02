@@ -89,4 +89,28 @@ class FollowerTest < ActiveSupport::TestCase
       end
     end
   end
+  
+  context "when listing all followers" do
+    setup do
+      @follower5 = Follower.create(:name => "chunky", :started_following_on => Date.today)
+      @follower3 = Follower.create(:name => "chunky", :started_following_on => 4.day.ago, :stopped_following_on => 2.days.ago)
+      @follower4 = Follower.create(:name => "chunky", :started_following_on => 2.days.ago, :stopped_following_on => 1.day.ago)
+      @follower1 = Follower.create(:name => "chunky", :started_following_on => 7.days.ago)
+      @follower2 = Follower.create(:name => "chunky", :started_following_on => 5.days.ago)
+    end
+    
+    should "put newest first" do
+      assert_equal @follower5, Follower.sorted.first
+    end
+    
+    should "put starters before stoppers" do
+      assert_equal @follower4, Follower.sorted.second
+      assert_equal @follower3, Follower.sorted.third
+    end
+    
+    should "just put starters where they belong" do
+      assert_equal @follower2, Follower.sorted.fourth
+      assert_equal @follower1, Follower.sorted.fifth
+    end
+  end
 end
