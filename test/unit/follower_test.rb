@@ -88,6 +88,12 @@ class FollowerTest < ActiveSupport::TestCase
           Follower.sync_with_twitter
           assert_equal Date.today, follower.reload.stopped_following_on
         end
+        
+        should "not update the stopped_following_on date again" do
+          follower = Follower.create(:twitter_id => 101, :stopped_following_on => Date.today - 2.days)
+          Follower.sync_with_twitter
+          assert_equal Date.today - 2.days, follower.reload.stopped_following_on
+        end
       end
     end
   end
