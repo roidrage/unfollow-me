@@ -13,7 +13,7 @@ class Follower < ActiveRecord::Base
     followers.each do |follower|
       existing_follower = existing_followers.find {|user| user.twitter_id == follower.id.to_i}
       if existing_follower
-        # existing_follower.update_attributes(:screen_name => follower.screen_name, :name => follower.name, :image_url => follower.profile_image_url)
+        existing_follower.update_attributes(:screen_name => follower.screen_name, :name => follower.name, :image_url => follower.profile_image_url)
         existing_follower.update_attributes(:stopped_following_on => nil, :started_following_on => Date.today) if existing_follower.stopped_following_on?
       else
         create(:name => follower.name, :screen_name => follower.screen_name, :image_url => follower.profile_image_url, :twitter_id => follower.id, :started_following_on => Date.today)
