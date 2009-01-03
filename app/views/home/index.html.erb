@@ -8,6 +8,7 @@
     
     ul.list li {
       list-style: none;
+      height: 25px;
     }
     
     ul.list li.date {
@@ -44,7 +45,11 @@
       <% else %>
         <li class="green">
       <% end %>
-      <a href="http://twitter.com/<%= follower.screen_name %>"><%= follower.name %></a></li>
+      <a href="http://twitter.com/<%= follower.screen_name %>">
+        <img src="<%= follower.image_url %>" width="24" align="middle"/>&nbsp;&nbsp;<%= follower.name %>
+      </a>
+      </li>
+      
     <% end %>
   <% end %>
 
