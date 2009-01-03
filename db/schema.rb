@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090101151905) do
+ActiveRecord::Schema.define(:version => 20090103124718) do
 
   create_table "followers", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20090101151905) do
     t.integer  "twitter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "screen_name"
   end
 
 end

@@ -35,8 +35,9 @@ class FollowerTest < ActiveSupport::TestCase
       @base = Object.new
       Twitter::Base.stubs(:new).with('unfollowme', 'foo.bar').returns(@base)
       @user = Twitter::User.new
-      @user.id = 100
+      @user.id = "100"
       @user.name = 'Gonzo'
+      @user.screen_name = 'gonzogonzalez'
       @user.profile_image_url = 'http://img.twitter.com/noone.png'
       @base.stubs(:followers).returns [@user]
       @myself = Twitter::User.new
@@ -62,6 +63,7 @@ class FollowerTest < ActiveSupport::TestCase
         Follower.sync_with_twitter
         follower = Follower.first
         assert_equal 'Gonzo', follower.name
+        assert_equal 'gonzogonzalez', follower.screen_name
       end
     
       should "set the date on which the user started following" do
