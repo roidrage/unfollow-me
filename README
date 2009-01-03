@@ -7,3 +7,6 @@ The purpose? No real one, just some playing around with the Twitter API.
 It's not capable of running for multiple users, so you can just run it locally whenever you feel like it.
 
 Just add your Twitter username and password in config/initializers/twitter.rb and you're good to go.
+
+You can then either run the daemon script/synchronizer or run the synchronization process manually using
+rake unfollow:sync
