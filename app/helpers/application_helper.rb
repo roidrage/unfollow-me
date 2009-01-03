@@ -10,7 +10,7 @@ module ApplicationHelper
   
   def new_date?(follower)
     @__current_date ||= Date.today + 1.day
-    @__current_date > follower.started_following_on or
+    (@__current_date > follower.started_following_on and follower.stopped_following_on.nil?) or
       (follower.stopped_following_on? and @__current_date > follower.stopped_following_on)
   end
 end
