@@ -1,9 +1,53 @@
-<% @followers.each do |follower| %>
-  <%= next_date(follower) %>
-  <% if follower.stopped_following_on? %>
-    <span style="color:red">
-  <% else %>
-    <span style="color:green">
+<html>
+  <title>Unfollow.me - A History of your Followers</title>
+  <style type="text/css" media="screen">
+    ul.list {
+      width: 300px;
+      margin: 20px auto;
+    }
+    
+    ul.list li {
+      list-style: none;
+    }
+    
+    ul.list li.date {
+      font-weight: bold;
+      margin-left: -100px;
+      float: left;
+    }
+    
+    ul.list li.red a {
+      color: red;
+      text-decoration: none;
+    }
+    
+    ul.list li.green a {
+      color: green;
+      text-decoration: none;
+    }
+    
+    div.pagination {
+      margin: 10px 0px 0px 0px;
+    }
+    
+    div.pagination a {
+      text-decoration: none;
+      color: black;
+    }
+  </style>
+<body>
+<ul class="list">
+  <% @followers.each do |follower| %>
+    <% list_for_date(follower) do %>
+      <% if follower.stopped_following_on? %>
+        <li class="red">
+      <% else %>
+        <li class="green">
+      <% end %>
+      <a href="http://twitter.com/<%= follower.screen_name %>"><%= follower.name %></a></li>
+    <% end %>
   <% end %>
-  <%= follower.name %></span><br/>
-<% end %>
+
+  <li><%= will_paginate @followers %></li>
+</ul>
+</body>

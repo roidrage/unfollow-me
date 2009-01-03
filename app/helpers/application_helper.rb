@@ -13,4 +13,11 @@ module ApplicationHelper
     (@__current_date > follower.started_following_on and follower.stopped_following_on.nil?) or
       (follower.stopped_following_on? and @__current_date > follower.stopped_following_on)
   end
+  
+  def list_for_date(follower, &block)
+    if new_date?(follower)
+      concat("<br/><li class=\"date\">#{next_date(follower)}</li>")
+    end
+    yield
+  end
 end
