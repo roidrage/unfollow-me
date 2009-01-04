@@ -1,5 +1,5 @@
 class Follower < ActiveRecord::Base
-  named_scope :sorted, :order => ["started_following_on desc, stopped_following_on desc"]
+  named_scope :sorted, :order => ["coalesce(stopped_following_on, started_following_on) desc"]
   
   def self.sync_with_twitter
     TwitterSync.new.run
