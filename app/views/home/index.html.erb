@@ -1,41 +1,6 @@
 <html>
   <title>Unfollow.me - A History of your Followers</title>
-  <style type="text/css" media="screen">
-    ul.list {
-      width: 300px;
-      margin: 20px auto;
-    }
-    
-    ul.list li {
-      list-style: none;
-      height: 25px;
-    }
-    
-    ul.list li.date {
-      font-weight: bold;
-      margin-left: -100px;
-      float: left;
-    }
-    
-    ul.list li.red a {
-      color: red;
-      text-decoration: none;
-    }
-    
-    ul.list li.green a {
-      color: green;
-      text-decoration: none;
-    }
-    
-    div.pagination {
-      margin: 10px 0px 0px 0px;
-    }
-    
-    div.pagination a {
-      text-decoration: none;
-      color: black;
-    }
-  </style>
+  <%= stylesheet_link_tag "application" %>
 <body>
 <ul class="list">
   <% @followers.each do |follower| %>
